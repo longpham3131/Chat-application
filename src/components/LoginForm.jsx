@@ -1,30 +1,20 @@
 import { useState } from "react"
-import axios from 'axios'
+import {getChatUser} from '../store/actions/chat.action'
+import {  useDispatch, useSelector } from "react-redux";
 
 const LoginForm = () => {
-
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const getChatUserStatus = useSelector(state => state.ChatReducer.chatUser)
 
-    const handleSubmit = async (e) => {
+    console.log("STATUS", getChatUserStatus)
+
+    const handleSubmit =  (e) => {
         e.preventDefault();
 
-        const authObject = {'Project-ID' : 'e078c6b8-8d92-4d9b-a130-9f7c1b64406f', 'User-Name' : username, 'User-Secret': password}
+        dispatch(getChatUser(username, password))
 
-        try{
-           await axios.get('https://api.chatengine.io/chats', {headers: authObject});
-
-           localStorage.setItem('username', username)
-           localStorage.setItem('password', password)
-
-           window.location.reload();
-
-        }
-        catch( error) {
-            setError('Username or password invalid')
-        }
-        //username 
     }
 
     return (
@@ -35,7 +25,7 @@ const LoginForm = () => {
                     <input type="text" className="input" placeholder="Username" value={username}  onChange={(e) => setUsername(e.target.value)}/>
                     <input type="password" className="input" placeholder="Password" value={password}  onChange={(e) => setPassword(e.target.value)}/>
                     <div align="center">
-                        <h2 className="error" style={{display: error != '' ? 'block' : 'none'}}>{error}</h2>
+                        <h2 className="error" style={{display: getChatUserStatus != '' ? 'block' : 'none'}}>{getChatUserStatus}</h2>
                         <button type="submit" className="button">
                             <span>Start Chatting</span>
                         </button>
@@ -46,5 +36,6 @@ const LoginForm = () => {
 
     )
 }
+
 
 export default LoginForm;
