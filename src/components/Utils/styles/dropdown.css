@@ -1,0 +1,23 @@
+.dropdown--custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+  height: 50px;
+  width: 100%;
+  padding: 0 15px;
+  transition: all 0.3s;
+}
+.dropdown--custom:hover {
+  background-color: purple;
+  color: white;
+}
+
+.dropdown--custom i {
+  font-size: 25px;
+  transition: all 0.5s;
+}
+.dropdown--custom i.active {
+  transform: rotate(-90deg);
+}

@@ -8,11 +8,9 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
     const getChatUserStatus = useSelector(state => state.ChatReducer.chatUser)
 
-    console.log("STATUS", getChatUserStatus)
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-
         dispatch(getChatUser(username, password))
 
     }
