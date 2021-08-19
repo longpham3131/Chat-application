@@ -13,7 +13,7 @@ const ChatSettingTop = ({ title }) => {
           marginBottom: "10px",
         }}
       />
-      <h4>{title}</h4>
+      <div className="chat-title">{title}</div>
     </div>
   );
 };

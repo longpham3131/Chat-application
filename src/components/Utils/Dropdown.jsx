@@ -6,7 +6,7 @@ const Dropdown = ({ title, content }) => {
   return (
     <>
       <div
-        className={`dropdown--custom ${isShow ? "active" : " "} `}
+        className={`dropdown--custom mt-3 ${isShow ? "active" : " "} `}
         onClick={() => setIsShow(!isShow)}
       >
         <h5>{title}</h5>

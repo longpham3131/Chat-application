@@ -11,10 +11,18 @@ const ChatSettingPeople = ({ chat }) => {
             alt="person-avatar"
           />
           <span className="chatMember__name">{person.person.username}</span>
-          <span className="chatMember__role">
-            {person.person.username === chat.admin.username
-              ? "Admin"
-              : "Member"}
+          <span
+            className="chatMember__status"
+            style={{
+              display:
+                person.person.username === localStorage.getItem("username")
+                  ? "none"
+                  : "block",
+              color: person.person.is_online ? "green" : "gray",
+              fontWeight: "500",
+            }}
+          >
+            {person.person.is_online ? "Online" : "Offline"}
           </span>
         </div>
       );
