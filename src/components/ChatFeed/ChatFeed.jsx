@@ -10,8 +10,6 @@ import { IsTyping } from "react-chat-engine";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages, connecting } = props;
-  console.log("CHAT_FEED", props);
-  console.log("CHAT_FEED_MESS_LENGTH", Object.keys(messages).length);
   const [isShowModal, setIsShowModal] = useState(false);
   const [file, setFile] = useState(null);
 
