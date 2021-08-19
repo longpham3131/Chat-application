@@ -51,6 +51,10 @@ const ChatFeed = (props) => {
               <TheirMessage
                 message={message}
                 lastMessage={messages[lastMessageKey]}
+                handleShowImage={(file) => {
+                  setFile(file);
+                  setIsShowModal(true);
+                }}
               />
             )}
           </div>
@@ -73,12 +77,12 @@ const ChatFeed = (props) => {
   if (!chat) return "Loading....";
   return (
     <div className="chat-feed">
-      {/* <div className="chat-title-container">
-                <div className="chat-title">{chat?.title}</div>
-                <div className="chat-subtitle">
-                    {chat.people.map((person) => `${person.person.username}`)}
-                </div>
-            </div> */}
+      <div className="chat-title-container">
+        <div className="chat-title">{chat?.title}</div>
+        <div className="chat-subtitle">
+          {chat.people.map((person) => `${person.person.username}, `)}
+        </div>
+      </div>
       <Dialog
         isShow={isShowModal}
         content={file}

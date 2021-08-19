@@ -1,4 +1,4 @@
-const TheirMessage = ({ lastMessage, message }) => {
+const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
   const isFirtstMessageByUser =
     !lastMessage || lastMessage.sender.username !== message.sender.username;
 
@@ -27,7 +27,11 @@ const TheirMessage = ({ lastMessage, message }) => {
           src={message.attachments[0].file}
           alt="message-attachment"
           className="message-image"
-          style={{ marginLeft: isFirtstMessageByUser ? "4px" : "48px" }}
+          onClick={() => handleShowImage(message.attachments[0].file)}
+          style={{
+            marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+            cursor: "pointer",
+          }}
         />
       );
     } else {

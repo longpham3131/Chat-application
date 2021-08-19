@@ -14,7 +14,7 @@ const ChatSettingTop = ({ creds, chat }) => {
           marginBottom: "10px",
         }}
       />
-      <h4>{chat.title}</h4>
+      <h4>{chat?.title}</h4>
     </div>
   );
 };
