@@ -1,31 +1,80 @@
-const TheirMessage = ({lastMessage, message}) => {
-    const isFirtstMessageByUser = !lastMessage || lastMessage.sender.username != message.sender.username
-    
-    return (
-        <div className="message-row">
-            {isFirtstMessageByUser && (
-                <div className="message-avatar" style={{backgroundImage: `url(${message?.sender?.avatar})`}} />
-            )}
+const TheirMessage = ({ lastMessage, message }) => {
+  const isFirtstMessageByUser =
+    !lastMessage || lastMessage.sender.username !== message.sender.username;
 
-            {
-                message?.attachments?.length > 0 
-                   ?(
-                        <img 
-                            src={message.attachments[0].file}
-                            alt="message-attachment"
-                            className="message-image"
-                            style={{marginLeft: isFirtstMessageByUser ? '4px' : '48px'}}
-                        />
-                    ) : (
-                        <div className="message" style={{float: 'left',  backgroundColor: '#CABCDC', marginLeft: isFirtstMessageByUser ? '4px' : '48px'}}>
-                            {message.text}
-                        </div>
-                    )
-            
-                
-            }
+  const handleTypeOfMessage = () => {
+    if (message?.attachments?.length > 0) {
+      //Video
+      if (message?.attachments[0].file.includes(".mp4")) {
+        return (
+          <video
+            width="320"
+            height="240"
+            className="message-image"
+            style={{
+              float: "right ",
+              marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+            }}
+            controls
+          >
+            <source src={message.attachments[0].file} type="video/mp4" />
+          </video>
+        );
+      }
+      //Image
+      return (
+        <img
+          src={message.attachments[0].file}
+          alt="message-attachment"
+          className="message-image"
+          style={{ marginLeft: isFirtstMessageByUser ? "4px" : "48px" }}
+        />
+      );
+    } else {
+      //Link
+      if (message.text.includes("https")) {
+        return (
+          <div
+            className="message"
+            style={{
+              float: "left",
+              backgroundColor: "#CABCDC",
+              marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+            }}
+          >
+            <a href={message.text} target="_blank">
+              {message.text}{" "}
+            </a>
+          </div>
+        );
+      }
+      //text
+      return (
+        <div
+          className="message"
+          style={{
+            float: "left",
+            backgroundColor: "#CABCDC",
+            marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+          }}
+        >
+          {message.text}
         </div>
-    )
-}
+      );
+    }
+  };
+  return (
+    <div className="message-row">
+      {isFirtstMessageByUser && (
+        <div
+          className="message-avatar"
+          style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
+        />
+      )}
+
+      {handleTypeOfMessage()}
+    </div>
+  );
+};
 
 export default TheirMessage;

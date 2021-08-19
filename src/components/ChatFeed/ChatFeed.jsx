@@ -1,11 +1,14 @@
 import MessageForm from "./MessageForm";
 import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
+import Dialog from "../Utils/Dialog";
+import { useState } from "react";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
-
-  console.log("CHAT_FEED_PROPS", props);
+  console.log("CHAT_FEED", props);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [file, setFile] = useState(null);
 
   const chat = chats && chats[activeChat];
 
@@ -37,7 +40,13 @@ const ChatFeed = (props) => {
         <div key={`msg_${index}`} style={{ width: "100%" }}>
           <div className="message-block">
             {isMyMessage ? (
-              <MyMessage message={message} />
+              <MyMessage
+                message={message}
+                handleShowImage={(file) => {
+                  setFile(file);
+                  setIsShowModal(true);
+                }}
+              />
             ) : (
               <TheirMessage
                 message={message}
@@ -70,6 +79,13 @@ const ChatFeed = (props) => {
                     {chat.people.map((person) => `${person.person.username}`)}
                 </div>
             </div> */}
+      <Dialog
+        isShow={isShowModal}
+        content={file}
+        handleHideModal={() => {
+          setIsShowModal(false);
+        }}
+      />
       {renderMessage()}
       <div style={{ height: "100px" }} />
       <div className="message-form-container">

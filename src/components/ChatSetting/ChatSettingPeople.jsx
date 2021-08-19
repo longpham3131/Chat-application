@@ -2,9 +2,9 @@ import "./styles/chatSettingPeople.css";
 
 const ChatSettingPeople = ({ creds, chat }) => {
   const renderListPeople = () => {
-    return chat.people.map((person) => {
+    return chat.people.map((person, index) => {
       return (
-        <div className="chatMember">
+        <div className="chatMember" key={`person_${index}`}>
           <img
             className="chatMember__avatar"
             src={person.person.avatar}

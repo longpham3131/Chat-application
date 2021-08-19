@@ -1,4 +1,4 @@
-const MyMessage = ({ message }) => {
+const MyMessage = ({ message, handleShowImage }) => {
   // Kiểm tra tín nhắn có ảnh không
   if (message?.attachments?.length > 0) {
     if (message?.attachments[0].file.includes(".mp4")) {
@@ -14,12 +14,14 @@ const MyMessage = ({ message }) => {
         </video>
       );
     }
+
     return (
       <img
         src={message.attachments[0].file}
         alt="message-attachment"
         className="message-image"
-        style={{ float: "right " }}
+        onClick={() => handleShowImage(message.attachments[0].file)}
+        style={{ float: "right ", cursor: "pointer" }}
       />
     );
   }
@@ -33,7 +35,13 @@ const MyMessage = ({ message }) => {
         backgroundColor: "#3b2a50",
       }}
     >
-      {message.text}
+      {message.text.includes("https") ? (
+        <a href={message.text} target="_blank" style={{ color: "white" }}>
+          {message.text}{" "}
+        </a>
+      ) : (
+        message.text
+      )}
     </div>
   );
 };
