@@ -3,10 +3,15 @@ import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 import Dialog from "../Utils/Dialog";
 import { useState } from "react";
+import Loader from "react-loader-spinner";
+import { message } from "antd";
+import Loading from "../Utils/Loading";
+import { IsTyping } from "react-chat-engine";
 
 const ChatFeed = (props) => {
-  const { chats, activeChat, userName, messages } = props;
+  const { chats, activeChat, userName, messages, connecting } = props;
   console.log("CHAT_FEED", props);
+  console.log("CHAT_FEED_MESS_LENGTH", Object.keys(messages).length);
   const [isShowModal, setIsShowModal] = useState(false);
   const [file, setFile] = useState(null);
 
@@ -74,13 +79,13 @@ const ChatFeed = (props) => {
   };
 
   renderMessage();
-  if (!chat) return "Loading....";
+  // if (connecting || Object.keys(messages).length === 0) return "Loading....";
   return (
     <div className="chat-feed">
       <div className="chat-title-container">
         <div className="chat-title">{chat?.title}</div>
         <div className="chat-subtitle">
-          {chat.people.map((person) => `${person.person.username}, `)}
+          {chat?.people.map((person) => `${person?.person?.username}, `)}
         </div>
       </div>
       <Dialog
@@ -90,7 +95,12 @@ const ChatFeed = (props) => {
           setIsShowModal(false);
         }}
       />
-      {renderMessage()}
+      {connecting || Object.keys(messages).length === 0 ? (
+        <Loading content={"Loading message..."} />
+      ) : (
+        renderMessage()
+      )}
+      <IsTyping />
       <div style={{ height: "100px" }} />
       <div className="message-form-container">
         <MessageForm {...props} chatId={activeChat} />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "bootstrap";
+import "./styles/chatSettingPhoto.css";
 import Dialog from "../Utils/Dialog";
 
 const ChatSettingPhoto = ({ chat }) => {
@@ -22,20 +22,24 @@ const ChatSettingPhoto = ({ chat }) => {
         }}
       />
       <div
-        className="row"
+        className="row m-0"
         style={{
           overflowY: "scroll",
           height: "200px",
           maxHeight: "200px",
           paddingBottom: "10px",
-          marginLeft: "1px",
+          paddingTop: "10px",
         }}
       >
-        {chat?.attachments.map((item, index) => {
+        {chat?.attachments?.map((item, index) => {
           if (item.file.includes(".mp4")) {
             return (
-              <div className="col-4 p-0" key={`file_${index}`}>
-                <video style={{ width: "100px", height: "100px" }} controls>
+              <div
+                className="col-4 p-0 "
+                key={`file_${index}`}
+                style={{ height: "100px" }}
+              >
+                <video style={{ width: "100%", height: "100px" }} controls>
                   <source src={item.file} type="video/mp4" />
                 </video>
               </div>
@@ -50,7 +54,6 @@ const ChatSettingPhoto = ({ chat }) => {
                 backgroundImage: `url(${item.file})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                width: "100px",
                 height: "100px",
                 cursor: "pointer",
               }}

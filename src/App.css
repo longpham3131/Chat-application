@@ -308,3 +308,8 @@
   text-align: center;
   margin-top: 20px;
 }
+
+/* hidden scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+}

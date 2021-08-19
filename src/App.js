@@ -7,6 +7,7 @@ import ChatSettingOption from "./components/ChatSetting/ChatSettingOption";
 import Dropdown from "./components/Utils/Dropdown";
 import ChatSettingPeople from "./components/ChatSetting/ChatSettingPeople";
 import ChatSettingPhoto from "./components/ChatSetting/ChatSettingPhoto";
+import ChatSettings from "./components/ChatSetting/ChatSettings";
 
 
 const App = () => {
@@ -21,10 +22,7 @@ const App = () => {
             // render custome component
 
             renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
-            renderChatSettingsTop={(creds, chat) => <ChatSettingTop creds={creds} chat={chat}  />}
-            renderPeopleSettings={(creds, chat) => <Dropdown title={'People'} content={<ChatSettingPeople creds={creds} chat={chat}/>}/>}
-            renderPhotosSettings={(chat) => <Dropdown title={'Photos'} content={<ChatSettingPhoto chat={chat}/>}/>}
-            renderOptionsSettings={(creds, chat) => <Dropdown title={'Options'} content={<ChatSettingOption creds={creds} chat={chat}/>}/>}
+            renderChatSettings={(chatAppProps) => <ChatSettings {...chatAppProps}/>}
         ></ChatEngine>
 
     );

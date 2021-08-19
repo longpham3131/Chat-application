@@ -1,8 +1,8 @@
 import "./styles/chatSettingPeople.css";
 
-const ChatSettingPeople = ({ creds, chat }) => {
+const ChatSettingPeople = ({ chat }) => {
   const renderListPeople = () => {
-    return chat.people.map((person, index) => {
+    return chat?.people?.map((person, index) => {
       return (
         <div className="chatMember" key={`person_${index}`}>
           <img

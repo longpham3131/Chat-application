@@ -1,7 +1,6 @@
 import imgDefault from "../../../src/assets/img/logo192.png";
 
-const ChatSettingTop = ({ creds, chat }) => {
-  console.log("CHAT_SETTING_PROPS", chat);
+const ChatSettingTop = ({ title }) => {
   return (
     <div className="container text-center mt-3">
       <img
@@ -14,7 +13,7 @@ const ChatSettingTop = ({ creds, chat }) => {
           marginBottom: "10px",
         }}
       />
-      <h4>{chat?.title}</h4>
+      <h4>{title}</h4>
     </div>
   );
 };

@@ -2,22 +2,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #dee2e6;
   cursor: pointer;
   height: 50px;
   width: 100%;
   padding: 0 15px;
   transition: all 0.3s;
 }
+
+.dropdown--custom h5 {
+  transition: all 0.5s;
+}
+/* hover  */
 .dropdown--custom:hover {
   background-color: purple;
   color: white;
 }
-
+.dropdown--custom:hover h5 {
+  color: white;
+}
 .dropdown--custom i {
   font-size: 25px;
   transition: all 0.5s;
 }
 .dropdown--custom i.active {
   transform: rotate(-90deg);
+}
+/* active */
+.dropdown--custom.active {
+  background-color: purple;
+  color: white;
+}
+.dropdown--custom.active h5 {
+  color: white;
 }

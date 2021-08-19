@@ -5,7 +5,10 @@ const Dropdown = ({ title, content }) => {
 
   return (
     <>
-      <div className="dropdown--custom" onClick={() => setIsShow(!isShow)}>
+      <div
+        className={`dropdown--custom ${isShow ? "active" : " "} `}
+        onClick={() => setIsShow(!isShow)}
+      >
         <h5>{title}</h5>
         <i className={`fa fa-angle-left ${isShow ? "active" : " "} `}></i>
       </div>
