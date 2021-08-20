@@ -5,6 +5,9 @@
 }
 
 .chatMember__avatar {
+  position: relative;
+}
+.chatMember__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -13,7 +16,18 @@
   flex-grow: 2;
   margin-left: 10px;
 }
-
+.chatMember__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+}
+.chatMember__status.online {
+  background-color: #0cd30c;
+}
 .button--add-member {
   width: 100%;
   margin: 10px 0;
@@ -24,5 +38,20 @@
 }
 .button--add-member:hover {
   background-color: purple;
+  color: white;
+}
+.chatMember__remove {
+  color: red;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 10px;
+  width: 70px;
+  background-color: white;
+  border: 1px solid red;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.chatMember__remove:hover {
+  background-color: red;
   color: white;
 }

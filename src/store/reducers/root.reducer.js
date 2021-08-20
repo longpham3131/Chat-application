@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import { ChatReducer } from './chat.reducer'
+import { chatReducer } from './chat.reducer'
 
 const rootReducer = combineReducers({
-    ChatReducer,
+    chatReducer,
 })
 
 export default rootReducer;

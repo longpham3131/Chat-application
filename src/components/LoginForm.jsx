@@ -6,7 +6,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const getChatUserStatus = useSelector((state) => state.ChatReducer.chatUser);
+  const getChatUserStatus = useSelector((state) => state.chatReducer.chatUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();

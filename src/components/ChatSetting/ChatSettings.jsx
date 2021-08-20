@@ -9,21 +9,21 @@ import ChatSettingTop from "./ChatSettingTop";
 
 const ChatSettings = (props) => {
   const dispatch = useDispatch();
-  const dataSetting = useSelector((state) => state.ChatReducer.chatDetail);
+  const dataSetting = useSelector((state) => state.chatReducer.chatDetail);
   useEffect(() => {
     dispatch(getChatDetail(49601));
   }, []);
   //   dispatch(getChatDetail(49601));
-
+  console.log("DATAAA", dataSetting);
   return (
     <div style={{ padding: "10px" }}>
       <ChatSettingTop title={dataSetting?.title} />
       <Dropdown
-        title={"People"}
+        title={`People (${dataSetting?.people?.length})`}
         content={<ChatSettingPeople chat={dataSetting} />}
       />
       <Dropdown
-        title={"Photos"}
+        title={`Photos (${dataSetting?.attachments?.length})`}
         content={<ChatSettingPhoto chat={dataSetting} />}
       />
       <Dropdown

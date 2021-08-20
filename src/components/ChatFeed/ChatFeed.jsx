@@ -21,7 +21,7 @@ const ChatFeed = (props) => {
     dispatch(getMessages(49601));
   }, []);
   const chat = chats && chats[activeChat];
-  const messages = useSelector((state) => state.ChatReducer.messages);
+  const messages = useSelector((state) => state.chatReducer.messages);
 
   useEffect(() => {
     if (chat?.last_message?.id !== messages[messages.length - 1]?.id) {
@@ -33,8 +33,8 @@ const ChatFeed = (props) => {
     scrollDownHere.current.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const renderReceipts = (message, isMyMessage) => {
-    return chat.people.map(
+  const renderReadReceipts = (message, isMyMessage) =>
+    chat?.people?.map(
       (person, index) =>
         person.last_read === message.id && (
           <div
@@ -42,12 +42,12 @@ const ChatFeed = (props) => {
             className="read-receipt"
             style={{
               float: isMyMessage ? "right" : "left",
-              backgroundImage: `url(${person?.person?.avatar})`,
+              backgroundImage:
+                person.person.avatar && `url(${person.person.avatar})`,
             }}
           />
         )
     );
-  };
 
   const renderMessage = () => {
     if (!messages) return null;
@@ -85,18 +85,16 @@ const ChatFeed = (props) => {
             className="read-receipts"
             style={{
               marginRight: isMyMessage ? "18px" : "0px",
-              marignLeft: isMyMessage ? "0px" : "68px",
+              marginLeft: isMyMessage ? "0px" : "68px",
             }}
           >
-            {renderReceipts(message, isMyMessage)}
+            {renderReadReceipts(message, isMyMessage)}
           </div>
         </div>
       );
     });
   };
 
-  // renderMessage();
-  // if (connecting || Object.keys(messages).length === 0) return "Loading....";
   return (
     <div className="chat-feed">
       <div className="chat-title-container">
@@ -120,7 +118,11 @@ const ChatFeed = (props) => {
       <IsTyping />
       <div style={{ height: "100px" }} ref={scrollDownHere} />
       <div className="message-form-container">
-        <MessageForm {...props} chatId={activeChat} />
+        <MessageForm
+          {...props}
+          chatId={activeChat}
+          latestMessage={chat?.last_message?.id}
+        />
       </div>
     </div>
   );

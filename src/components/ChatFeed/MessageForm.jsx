@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { sendMessage, isTyping } from "react-chat-engine";
 import { PictureOutlined, SendOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { patchReadMessage } from "../../store/actions/chat.action";
 
 const MessageForm = (props) => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const { chatId, creds } = props;
 
@@ -15,7 +18,9 @@ const MessageForm = (props) => {
 
     setValue("");
   };
-
+  const handleFocus = () => {
+    dispatch(patchReadMessage(49601, props.latestMessage));
+  };
   const handleChange = (event) => {
     setValue(event.target.value);
 
@@ -29,6 +34,7 @@ const MessageForm = (props) => {
       <input
         className="message-input"
         placeholder="...Send a message"
+        onFocus={handleFocus}
         onChange={handleChange}
         onSubmit={handleSubmit}
         value={value}
