@@ -11,7 +11,6 @@ const ChatSettings = (props) => {
   const dispatch = useDispatch();
   const dataSetting = useSelector((state) => state.ChatReducer.chatDetail);
   useEffect(() => {
-    console.log("111");
     dispatch(getChatDetail(49601));
   }, []);
   //   dispatch(getChatDetail(49601));

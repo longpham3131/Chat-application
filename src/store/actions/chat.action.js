@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_CHAT_USER, GET_CHAT_DETAIL} from '../constants/chat.constant'
+import {GET_CHAT_USER, GET_CHAT_DETAIL, GET_MESSAGES, GET_LATEST_MESSAGE} from '../constants/chat.constant'
 
 // Get chat user
 export const getChatUser = (username, password) => {
@@ -46,4 +46,46 @@ export const getChatDetail = (chatId = 49601) => {
 }
 const getChatDetailAction = (data) => {
     return { type: GET_CHAT_DETAIL, payload: data}
+}
+
+// Get message
+
+export const getMessages = (chatId = 49601) => {
+    return async (dispatch) => {
+        const username = localStorage.getItem('username')
+        const password = localStorage.getItem('password')
+        const authObject = {'Project-ID' : 'e078c6b8-8d92-4d9b-a130-9f7c1b64406f', 'User-Name' : username, 'User-Secret': password}
+        try{
+            const data = await axios.get(`https://api.chatengine.io/chats/${chatId}/messages`, {headers: authObject});
+ 
+           dispatch(getMessagesAction(data.data))
+ 
+         }
+         catch( error) {
+            console.log("ERR_MESSAGES", error)
+         }
+    }
+}
+const getMessagesAction = (data) => {
+    return { type: GET_MESSAGES, payload: data}
+}
+//Get latest message 
+export const getLatestMess = (chatId = 49601, countMessage= 1) => {
+    return async (dispatch) => {
+        const username = localStorage.getItem('username')
+        const password = localStorage.getItem('password')
+        const authObject = {'Project-ID' : 'e078c6b8-8d92-4d9b-a130-9f7c1b64406f', 'User-Name' : username, 'User-Secret': password}
+        try{
+            const data = await axios.get(`https://api.chatengine.io/chats/${chatId}/messages/latest/${countMessage}/`, {headers: authObject});
+ 
+           dispatch(getLatestMessAction(data.data))
+ 
+         }
+         catch( error) {
+            console.log("ERR_MESSAGES", error)
+         }
+    }
+}
+const getLatestMessAction = (data) => {
+    return { type: GET_LATEST_MESSAGE, payload: data}
 }

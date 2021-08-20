@@ -2,18 +2,36 @@ import MessageForm from "./MessageForm";
 import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 import Dialog from "../Utils/Dialog";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loader from "react-loader-spinner";
 import { message } from "antd";
 import Loading from "../Utils/Loading";
 import { IsTyping } from "react-chat-engine";
+import { useDispatch, useSelector } from "react-redux";
+import { getLatestMess, getMessages } from "../../store/actions/chat.action";
 
 const ChatFeed = (props) => {
-  const { chats, activeChat, userName, messages, connecting } = props;
+  const { chats, activeChat, userName, connecting } = props;
+  const dispatch = useDispatch();
+  const scrollDownHere = useRef(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [file, setFile] = useState(null);
 
+  useEffect(() => {
+    dispatch(getMessages(49601));
+  }, []);
   const chat = chats && chats[activeChat];
+  const messages = useSelector((state) => state.ChatReducer.messages);
+
+  useEffect(() => {
+    if (chat?.last_message?.id !== messages[messages.length - 1]?.id) {
+      dispatch(getMessages(49601));
+    }
+  }, [chat?.last_message]);
+
+  useEffect(() => {
+    scrollDownHere.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const renderReceipts = (message, isMyMessage) => {
     return chat.people.map(
@@ -32,6 +50,7 @@ const ChatFeed = (props) => {
   };
 
   const renderMessage = () => {
+    if (!messages) return null;
     const keys = Object.keys(messages);
 
     return keys.map((key, index) => {
@@ -76,7 +95,7 @@ const ChatFeed = (props) => {
     });
   };
 
-  renderMessage();
+  // renderMessage();
   // if (connecting || Object.keys(messages).length === 0) return "Loading....";
   return (
     <div className="chat-feed">
@@ -99,7 +118,7 @@ const ChatFeed = (props) => {
         renderMessage()
       )}
       <IsTyping />
-      <div style={{ height: "100px" }} />
+      <div style={{ height: "100px" }} ref={scrollDownHere} />
       <div className="message-form-container">
         <MessageForm {...props} chatId={activeChat} />
       </div>

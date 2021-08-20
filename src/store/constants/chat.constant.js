@@ -1,3 +1,6 @@
 export const GET_CHAT_USER = "GET_CHAT_USER";
 
 export const GET_CHAT_DETAIL = "GET_CHAT_DETAIL"
+
+export const GET_MESSAGES = "GET_MESSAGES"
+export const GET_LATEST_MESSAGE = "GET_LATEST_MESSAGE"
