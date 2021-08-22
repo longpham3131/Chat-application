@@ -3,22 +3,29 @@ import { sendMessage, isTyping } from "react-chat-engine";
 import { PictureOutlined, SendOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { patchReadMessage } from "../../store/actions/chat.action";
+import FilePreview from "../Utils/FilePreview";
 
 const MessageForm = (props) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
+  const [listFilePreview, setListFilePreview] = useState([]);
+  // const [listFileUpload, setListFileUpload] = useState([])
   const { creds } = props;
 
   const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
 
   const handleSubmit = (event) => {
+    console.log("LIST FILE", listFilePreview);
     event.preventDefault();
 
     const text = value.trim();
 
-    if (text.length > 0) sendMessage(creds, selectedChat, { text });
+    if (text.length > 0 || listFilePreview.length > 0) {
+      sendMessage(creds, selectedChat, { text, files: listFilePreview });
+    }
 
     setValue("");
+    setListFilePreview([]);
   };
   const handleFocus = () => {
     dispatch(patchReadMessage(selectedChat, props.latestMessage));
@@ -28,11 +35,41 @@ const MessageForm = (props) => {
 
     isTyping(props, selectedChat);
   };
-  const handleUpload = (event) => {
-    sendMessage(creds, selectedChat, { files: event.target.files, text: "" });
+  const onShowPreview = (event) => {
+    // console.log("EVEVNT", listFilePreview, event.target.files);
+    // let file = event.target.files[0];
+    // let reader = new FileReader();
+    // let url = reader.readAsDataURL(file);
+    // const filePreview = [...listFilePreview];
+
+    // reader.onloadend = () => {
+    //   filePreview.push(reader.result);
+    //   setListFilePreview(filePreview);
+    // };
+    const newFile = [...listFilePreview];
+    newFile.push(event.target.files[0]);
+    setListFilePreview(newFile);
+
+    // sendMessage(creds, selectedChat, { files: event.target.files, text: "" });
+  };
+  const handleRemoveFile = (file) => {
+    const newFilePreviewList = listFilePreview.filter((item) => item !== file);
+    setListFilePreview(newFilePreviewList);
   };
   return (
     <form className="message-form" onSubmit={handleSubmit}>
+      {/* Chỗ Load ảnh  */}
+      <div className="listFile d-flex m-2">
+        {listFilePreview &&
+          listFilePreview.map((file, index) => (
+            <FilePreview
+              file={file}
+              key={index}
+              handleRemoveFile={(file) => handleRemoveFile(file)}
+            />
+          ))}
+      </div>
+      {/* Input nhập tin nhắn*/}
       <input
         className="message-input"
         placeholder="...Send a message"
@@ -54,7 +91,7 @@ const MessageForm = (props) => {
           type="file"
           id="upload-button"
           style={{ display: "none" }}
-          onChange={handleUpload}
+          onChange={onShowPreview}
         />
 
         <button

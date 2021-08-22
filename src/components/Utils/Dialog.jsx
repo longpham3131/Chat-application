@@ -31,6 +31,7 @@ const Dialog = ({
       visible={isShow}
       title={title}
       closable={false}
+      centered={true}
       footer={type === "file" ? null : customFooter()}
       onCancel={() => {
         handleHideModal();

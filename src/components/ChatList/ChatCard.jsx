@@ -14,10 +14,10 @@ const ChatCard = ({ chat }) => {
     if (text !== "") {
       // word include key space
       // Ex: this is a word
-      if (text.split(" ").length !== 0) {
+      if (text.split(" ").length > 1) {
         return text.split(" ").map((word, index) => {
           if (index < 5) {
-            return word;
+            return word + " ";
           }
           if (index === 5) {
             return "...";
@@ -27,10 +27,10 @@ const ChatCard = ({ chat }) => {
       // long word no space
       // Ex: thisisawordddddddddddd
       else {
-        return text.slice(1, 40) + "...";
+        if (text.length > 30) return text.slice(1, 30) + "...";
+        return text;
       }
     } else {
-      console.log("NULLL");
       return "";
     }
   };
@@ -49,7 +49,11 @@ const ChatCard = ({ chat }) => {
         <span style={{ fontWeight: "500", marginRight: "5px" }}>
           {chat?.last_message?.sender?.username}:
         </span>
-        <span>{handleText()}</span>
+        <span>
+          {chat?.last_message?.attachments.length > 0
+            ? `sent ${chat?.last_message?.attachments.length} attachment`
+            : handleText()}
+        </span>
       </div>
     </div>
   );

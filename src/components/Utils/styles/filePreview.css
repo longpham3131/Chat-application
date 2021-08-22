@@ -1,0 +1,23 @@
+.filePreview {
+  position: relative;
+}
+.filePreview__iconDelete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #dedede;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #ff7875;
+  font-weight: 500;
+}
+.filePreview div {
+  border: 2px solid #000000ad;
+  border-radius: 10px;
+  box-shadow: -3px 4px #888888;
+}

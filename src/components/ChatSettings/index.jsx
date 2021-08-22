@@ -10,8 +10,10 @@ import ChatSettingTop from "./ChatSettingTop";
 const ChatSettings = (props) => {
   const dispatch = useDispatch();
   const dataSetting = useSelector((state) => state.chatReducer.chatDetail);
+  const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
+  console.log("Chat setting", selectedChat, dataSetting);
   useEffect(() => {
-    dispatch(getChatDetail(49601));
+    dispatch(getChatDetail(selectedChat));
   }, []);
   return (
     <div style={{ padding: "10px" }}>

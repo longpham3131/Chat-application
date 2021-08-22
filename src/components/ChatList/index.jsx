@@ -6,26 +6,27 @@ import {
   getChatList,
   changeSelectedChat,
 } from "../../store/actions/chat.action";
-const ChatList = (props) => {
-  // const [chats, setChats] = useState([])
-  const chats = useSelector((state) => state.chatReducer.chatList);
+const ChatList = ({ chats }) => {
+  // const [chatList, setchatList] = useState([])
+  // console.log("PROPS", props);
+  const chatList = useSelector((state) => state.chatReducer.chatList);
   const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getChatList());
+  // }, []);
+
+  useEffect(() => {
+    dispatch(changeSelectedChat(chatList[0]?.id));
+  }, [chatList]);
+
   useEffect(() => {
     dispatch(getChatList());
-  }, []);
-
-  useEffect(() => {
-    // // console.log("CHAT LIST", chats, selectedChat);
-    // if (selectedChat === 0 || selectedChat === undefined) {
-    //   console.log("CHAT LIST", chats, selectedChat);
-    //   dispatch(changeSelectedChat(chats[0]?.id));
-    // }
-    dispatch(changeSelectedChat(chats[0]?.id));
-  }, [chats]);
+  }, [chats ? chats[selectedChat] : ""]);
 
   const renderChatCard = () => {
-    return chats.map((chat, index) => {
+    return chatList.map((chat, index) => {
       return (
         <div key={`chat_${index}`} style={{ width: "100%" }}>
           <ChatCard chat={chat} />
@@ -35,10 +36,10 @@ const ChatList = (props) => {
   };
   return (
     <div className="chatList">
-      <div className="chatList__header">
-        <h3>My Chats</h3>
-      </div>
-      <div className="chatList__body">{chats && renderChatCard()}</div>
+      {/* <div className="chatList__header">
+        <h3>My chatList</h3>
+      </div> */}
+      <div className="chatList__body">{chatList && renderChatCard()}</div>
     </div>
   );
 };

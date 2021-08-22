@@ -146,6 +146,7 @@ export const changeSelectedChat = (chatId) => {
     console.log("CHANGE", chatId);
     await dispatch(changeSelectedChatAction(chatId));
     await dispatch(getMessages(chatId));
+    await dispatch(getChatDetail(chatId));
   };
 };
 

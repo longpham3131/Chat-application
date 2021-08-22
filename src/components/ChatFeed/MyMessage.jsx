@@ -14,16 +14,27 @@ const MyMessage = ({ message, handleShowImage }) => {
         </video>
       );
     }
-
-    return (
-      <img
-        src={message.attachments[0].file}
-        alt="message-attachment"
-        className="message-image"
-        onClick={() => handleShowImage(message.attachments[0].file)}
-        style={{ float: "right ", cursor: "pointer" }}
-      />
-    );
+    return message.attachments.map((attach, index) => {
+      return (
+        <img
+          src={attach.file}
+          alt="message-attachment"
+          className="message-image"
+          onClick={() => handleShowImage(attach.file)}
+          style={{ float: "right ", cursor: "pointer" }}
+          key={index}
+        />
+      );
+    });
+    // return (
+    //   <img
+    //     src={message.attachments[0].file}
+    //     alt="message-attachment"
+    //     className="message-image"
+    //     onClick={() => handleShowImage(message.attachments[0].file)}
+    //     style={{ float: "right ", cursor: "pointer" }}
+    //   />
+    // );
   }
   return (
     <div
