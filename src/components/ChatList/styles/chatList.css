@@ -1,0 +1,11 @@
+.chatList {
+}
+.chatList__header {
+  padding: 10px;
+  width: 100%;
+  background-color: #dee2e6;
+  text-align: center;
+}
+.chatList__body {
+  padding: 10px;
+}

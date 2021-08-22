@@ -46,7 +46,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
               marginLeft: isFirtstMessageByUser ? "4px" : "48px",
             }}
           >
-            <a href={message.text} target="_blank">
+            <a href={message.text} target="_blank" rel="noreferrer">
               {message.text}{" "}
             </a>
           </div>

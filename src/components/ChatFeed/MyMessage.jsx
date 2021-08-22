@@ -36,7 +36,12 @@ const MyMessage = ({ message, handleShowImage }) => {
       }}
     >
       {message.text.includes("https") ? (
-        <a href={message.text} target="_blank" style={{ color: "white" }}>
+        <a
+          href={message.text}
+          target="_blank"
+          style={{ color: "white" }}
+          rel="noreferrer"
+        >
           {message.text}{" "}
         </a>
       ) : (

@@ -1,0 +1,11 @@
+.chatCard {
+  background-color: bisque;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.chatCard__title {
+  font-weight: 500;
+  font-size: 17px;
+}

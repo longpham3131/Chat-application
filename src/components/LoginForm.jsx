@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getChatUser } from "../store/actions/chat.action";
+import { getChatUser } from "../store/actions/user.action";
 import { useDispatch, useSelector } from "react-redux";
 
 const LoginForm = () => {

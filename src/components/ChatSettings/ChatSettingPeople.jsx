@@ -4,7 +4,7 @@ import {
   getOtherUsers,
   postAddChatMember,
   putRemoveChatMember,
-} from "../../store/actions/chat.action";
+} from "../../store/actions/user.action";
 import SelectComp from "../Utils/Select";
 import "./styles/chatSettingPeople.css";
 import Dialog from "../Utils/Dialog";

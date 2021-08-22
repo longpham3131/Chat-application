@@ -3,12 +3,10 @@ import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 import Dialog from "../Utils/Dialog";
 import { useEffect, useRef, useState } from "react";
-import Loader from "react-loader-spinner";
-import { message } from "antd";
 import Loading from "../Utils/Loading";
 import { IsTyping } from "react-chat-engine";
 import { useDispatch, useSelector } from "react-redux";
-import { getLatestMess, getMessages } from "../../store/actions/chat.action";
+import { getMessages } from "../../store/actions/chat.action";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, connecting } = props;

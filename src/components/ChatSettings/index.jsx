@@ -13,8 +13,6 @@ const ChatSettings = (props) => {
   useEffect(() => {
     dispatch(getChatDetail(49601));
   }, []);
-  //   dispatch(getChatDetail(49601));
-  console.log("DATAAA", dataSetting);
   return (
     <div style={{ padding: "10px" }}>
       <ChatSettingTop title={dataSetting?.title} />

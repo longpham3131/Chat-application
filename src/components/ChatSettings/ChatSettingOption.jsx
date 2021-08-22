@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { putRemoveChatMember } from "../../store/actions/chat.action";
+import { putRemoveChatMember } from "../../store/actions/user.action";
 import "./styles/chatSettingOption.css";
 
 const ChatSettingOption = ({ creds, chat }) => {
