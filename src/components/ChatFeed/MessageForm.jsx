@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { sendMessage, isTyping } from "react-chat-engine";
 import { PictureOutlined, SendOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { patchReadMessage } from "../../store/actions/chat.action";
 
 const MessageForm = (props) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
-  const { chatId, creds } = props;
+  const { creds } = props;
+
+  const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const text = value.trim();
 
-    if (text.length > 0) sendMessage(creds, chatId, { text });
+    if (text.length > 0) sendMessage(creds, selectedChat, { text });
 
     setValue("");
   };
   const handleFocus = () => {
-    dispatch(patchReadMessage(49601, props.latestMessage));
+    dispatch(patchReadMessage(selectedChat, props.latestMessage));
   };
   const handleChange = (event) => {
     setValue(event.target.value);
 
-    isTyping(props, chatId);
+    isTyping(props, selectedChat);
   };
   const handleUpload = (event) => {
-    sendMessage(creds, chatId, { files: event.target.files, text: "" });
+    sendMessage(creds, selectedChat, { files: event.target.files, text: "" });
   };
   return (
     <form className="message-form" onSubmit={handleSubmit}>

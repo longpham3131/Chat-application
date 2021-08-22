@@ -16,9 +16,12 @@ const ChatList = (props) => {
   }, []);
 
   useEffect(() => {
-    if (selectedChat === 0) {
-      dispatch(changeSelectedChat(chats[0]?.id));
-    }
+    // // console.log("CHAT LIST", chats, selectedChat);
+    // if (selectedChat === 0 || selectedChat === undefined) {
+    //   console.log("CHAT LIST", chats, selectedChat);
+    //   dispatch(changeSelectedChat(chats[0]?.id));
+    // }
+    dispatch(changeSelectedChat(chats[0]?.id));
   }, [chats]);
 
   const renderChatCard = () => {

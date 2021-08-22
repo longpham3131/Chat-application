@@ -30,7 +30,7 @@ const getChatUserAction = (status) => {
 };
 
 //GET OTHER USER
-export const getOtherUsers = (chatId = 49601) => {
+export const getOtherUsers = (chatId) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -56,7 +56,7 @@ const getOtherUsersAction = (data) => {
 };
 
 //POST ADD CHAT MEMBERS
-export const postAddChatMember = (chatId = 49601, listNewMember) => {
+export const postAddChatMember = (chatId, listNewMember) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -82,7 +82,7 @@ export const postAddChatMember = (chatId = 49601, listNewMember) => {
   };
 };
 //POST REMOVE CHAT MEMBER
-export const putRemoveChatMember = (chatId = 49601, member) => {
+export const putRemoveChatMember = (chatId, member) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");

@@ -14,16 +14,14 @@ const ChatFeed = (props) => {
   const scrollDownHere = useRef(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [file, setFile] = useState(null);
+  const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
 
-  useEffect(() => {
-    dispatch(getMessages(49601));
-  }, []);
-  const chat = chats && chats[activeChat];
+  const chat = chats && chats[selectedChat];
   const messages = useSelector((state) => state.chatReducer.messages);
 
   useEffect(() => {
     if (chat?.last_message?.id !== messages[messages.length - 1]?.id) {
-      dispatch(getMessages(49601));
+      dispatch(getMessages(selectedChat));
     }
   }, [chat?.last_message]);
 
@@ -48,12 +46,11 @@ const ChatFeed = (props) => {
     );
 
   const renderMessage = () => {
-    if (!messages) return null;
-    const keys = Object.keys(messages);
+    if (messages.data.length === 0)
+      return <div className="text-center">No message</div>;
 
-    return keys.map((key, index) => {
-      const message = messages[key];
-      const lastMessageKey = index === 0 ? null : keys[index - 1];
+    return messages.data.map((message, index) => {
+      const lastMessageKey = index === 0 ? null : messages[index - 1];
       const isMyMessage = userName === message.sender.username;
 
       return (
@@ -108,7 +105,7 @@ const ChatFeed = (props) => {
           setIsShowModal(false);
         }}
       />
-      {connecting || Object.keys(messages).length === 0 ? (
+      {connecting || messages.isCompleted !== true ? (
         <Loading content={"Loading message..."} />
       ) : (
         renderMessage()

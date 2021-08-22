@@ -10,7 +10,7 @@ import {
 
 //Get chat detail
 
-export const getChatDetail = (chatId = 49601) => {
+export const getChatDetail = (chatId) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -36,7 +36,7 @@ const getChatDetailAction = (data) => {
 
 // Get message
 
-export const getMessages = (chatId = 49601) => {
+export const getMessages = (chatId) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -58,10 +58,10 @@ export const getMessages = (chatId = 49601) => {
   };
 };
 const getMessagesAction = (data) => {
-  return { type: GET_MESSAGES, payload: data };
+  return { type: GET_MESSAGES, payload: { data, isCompleted: true } };
 };
 //Get latest message
-export const getLatestMess = (chatId = 49601, countMessage = 1) => {
+export const getLatestMess = (chatId, countMessage = 1) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -87,7 +87,7 @@ const getLatestMessAction = (data) => {
 };
 
 //PATCH read message
-export const patchReadMessage = (chatId = 49601, lastRead) => {
+export const patchReadMessage = (chatId, lastRead) => {
   return async (dispatch) => {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
@@ -142,5 +142,13 @@ const getChatListAction = (data) => {
 
 // CHANGE_SELECTED_CHAT
 export const changeSelectedChat = (chatId) => {
+  return async (dispatch) => {
+    console.log("CHANGE", chatId);
+    await dispatch(changeSelectedChatAction(chatId));
+    await dispatch(getMessages(chatId));
+  };
+};
+
+const changeSelectedChatAction = (chatId) => {
   return { type: CHANGE_SELECTED_CHAT, payload: chatId };
 };
