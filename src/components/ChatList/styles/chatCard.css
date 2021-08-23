@@ -1,9 +1,17 @@
 .chatCard {
-  background-color: bisque;
+  background-color: rgb(202, 188, 220);
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
   cursor: pointer;
+  width: 80%;
+  transition: all 0.5s;
+  color: white;
+}
+.chatCard.selected,
+.chatCard:hover {
+  background-color: rgb(59, 42, 80);
+  width: 100%;
 }
 .chatCard__title {
   font-weight: 500;

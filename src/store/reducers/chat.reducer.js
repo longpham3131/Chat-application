@@ -15,7 +15,7 @@ const initialState = {
   latestMessage: [],
   readMessage: {},
   otherUsers: [],
-  selectedChat: 0,
+  selectedChat: null,
 };
 
 export const chatReducer = (state = initialState, { type, payload }) => {

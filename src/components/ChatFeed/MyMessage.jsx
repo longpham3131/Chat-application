@@ -1,4 +1,7 @@
+import { useState } from "react";
+import DefaultImage from "../../assets/img/default-image.jpg";
 const MyMessage = ({ message, handleShowImage }) => {
+  const [isLoadingImg, setIsLoadingImg] = useState(true);
   // Kiểm tra tín nhắn có ảnh không
   if (message?.attachments?.length > 0) {
     if (message?.attachments[0].file.includes(".mp4")) {
@@ -17,24 +20,18 @@ const MyMessage = ({ message, handleShowImage }) => {
     return message.attachments.map((attach, index) => {
       return (
         <img
-          src={attach.file}
+          src={isLoadingImg ? DefaultImage : attach.file}
           alt="message-attachment"
           className="message-image"
           onClick={() => handleShowImage(attach.file)}
+          onLoad={() => {
+            setIsLoadingImg(false);
+          }}
           style={{ float: "right ", cursor: "pointer" }}
           key={index}
         />
       );
     });
-    // return (
-    //   <img
-    //     src={message.attachments[0].file}
-    //     alt="message-attachment"
-    //     className="message-image"
-    //     onClick={() => handleShowImage(message.attachments[0].file)}
-    //     style={{ float: "right ", cursor: "pointer" }}
-    //   />
-    // );
   }
   return (
     <div

@@ -4,6 +4,7 @@ import { PictureOutlined, SendOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { patchReadMessage } from "../../store/actions/chat.action";
 import FilePreview from "../Utils/FilePreview";
+import "./styles/messageForm.css";
 
 const MessageForm = (props) => {
   const dispatch = useDispatch();
@@ -59,16 +60,18 @@ const MessageForm = (props) => {
   return (
     <form className="message-form" onSubmit={handleSubmit}>
       {/* Chỗ Load ảnh  */}
-      <div className="listFile d-flex m-2">
-        {listFilePreview &&
-          listFilePreview.map((file, index) => (
+      {listFilePreview.length > 0 && (
+        <div className="file-preview scrollbar-custom d-flex m-2">
+          {listFilePreview.map((file, index) => (
             <FilePreview
               file={file}
               key={index}
               handleRemoveFile={(file) => handleRemoveFile(file)}
             />
           ))}
-      </div>
+        </div>
+      )}
+
       {/* Input nhập tin nhắn*/}
       <input
         className="message-input"

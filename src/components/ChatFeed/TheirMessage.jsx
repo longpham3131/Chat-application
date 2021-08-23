@@ -1,4 +1,9 @@
+import DefaultImage from "../../assets/img/default-image.jpg";
+import DefaultAvatar from "../../assets/img/default-avatar.jpg";
+import { useState } from "react";
 const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
+  const [isLoadingAvatar, setIsLoadingAvatar] = useState(true);
+  const [isLoadingImage, setIsLoadingImage] = useState(true);
   const isFirtstMessageByUser =
     !lastMessage || lastMessage.sender.username !== message.sender.username;
 
@@ -23,16 +28,26 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
       }
       //Image
       return (
-        <img
-          src={message.attachments[0].file}
-          alt="message-attachment"
-          className="message-image"
-          onClick={() => handleShowImage(message.attachments[0].file)}
-          style={{
-            marginLeft: isFirtstMessageByUser ? "4px" : "48px",
-            cursor: "pointer",
-          }}
-        />
+        <div className="message-block">
+          {message.attachments.map((item) => {
+            return (
+              <img
+                src={isLoadingImage ? DefaultImage : item.file}
+                alt="message-attachment"
+                className="message-image"
+                onClick={() => handleShowImage(item.file)}
+                style={{
+                  marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+                  float: "left",
+                  cursor: "pointer",
+                }}
+                onLoad={() => {
+                  setIsLoadingImage(false);
+                }}
+              />
+            );
+          })}
+        </div>
       );
     } else {
       //Link
@@ -70,9 +85,13 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
   return (
     <div className="message-row">
       {isFirtstMessageByUser && (
-        <div
+        <img
           className="message-avatar"
-          style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
+          src={isLoadingAvatar ? DefaultAvatar : message?.sender?.avatar}
+          alt="avatar-sender"
+          onLoad={() => {
+            setIsLoadingAvatar(false);
+          }}
         />
       )}
 

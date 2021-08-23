@@ -18,18 +18,20 @@ const ChatSettings = (props) => {
   return (
     <div style={{ padding: "10px" }}>
       <ChatSettingTop title={dataSetting?.title} />
-      <Dropdown
-        title={`People (${dataSetting?.people?.length})`}
-        content={<ChatSettingPeople chat={dataSetting} />}
-      />
-      <Dropdown
-        title={`Photos (${dataSetting?.attachments?.length})`}
-        content={<ChatSettingPhoto chat={dataSetting} />}
-      />
-      <Dropdown
-        title={"Options"}
-        content={<ChatSettingOption chat={dataSetting} />}
-      />
+      <div style={{ overflowY: "scroll", maxHeight: "80vh" }}>
+        <Dropdown
+          title={`People (${dataSetting?.people?.length})`}
+          content={<ChatSettingPeople chat={dataSetting} />}
+        />
+        <Dropdown
+          title={`Photos (${dataSetting?.attachments?.length})`}
+          content={<ChatSettingPhoto chat={dataSetting} />}
+        />
+        <Dropdown
+          title={"Options"}
+          content={<ChatSettingOption chat={dataSetting} />}
+        />
+      </div>
     </div>
   );
 };

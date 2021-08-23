@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./styles/chatSettingPhoto.css";
+import DefaultImage from "../../assets/img/default-image.jpg";
 import Dialog from "../Utils/Dialog";
 
 const ChatSettingPhoto = ({ chat }) => {
   const [file, setFile] = useState("");
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isLoadingImg, setIsLoadingImg] = useState(true);
   // console.log("CHAT PHOTOS", chat);
 
   const handleOpenImage = (file) => {
@@ -51,7 +53,9 @@ const ChatSettingPhoto = ({ chat }) => {
               className="col-4 p-0"
               key={`file_${index}`}
               style={{
-                backgroundImage: `url(${item.file})`,
+                backgroundImage: `url(${
+                  isLoadingImg ? DefaultImage : item.file
+                })`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 height: "100px",
@@ -61,7 +65,12 @@ const ChatSettingPhoto = ({ chat }) => {
                 handleOpenImage(item.file);
               }}
             >
-              {/* <img src={item.file} alt="message-attachment" className="w-100" /> */}
+              <img
+                src={item.file}
+                alt="message-attachment"
+                className="d-none"
+                onLoad={() => setIsLoadingImg(false)}
+              />
             </div>
           );
         })}

@@ -7,6 +7,7 @@ import Loading from "../Utils/Loading";
 import { IsTyping } from "react-chat-engine";
 import { useDispatch, useSelector } from "react-redux";
 import { getMessages } from "../../store/actions/chat.action";
+import DefaultAvatar from "../../assets/img/default-avatar.jpg";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, connecting } = props;
@@ -14,6 +15,7 @@ const ChatFeed = (props) => {
   const scrollDownHere = useRef(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [file, setFile] = useState(null);
+  const [isLoadingAvatar, setIsLoadingAvatar] = useState(true);
   const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
 
   const chat = chats && chats[selectedChat];
@@ -33,13 +35,16 @@ const ChatFeed = (props) => {
     chat?.people?.map(
       (person, index) =>
         person.last_read === message.id && (
-          <div
+          <img
             key={`read_${index}`}
             className="read-receipt"
+            src={isLoadingAvatar ? DefaultAvatar : person.person.avatar}
+            alt="avatar-receipt"
+            onLoad={() => {
+              setIsLoadingAvatar(false);
+            }}
             style={{
               float: isMyMessage ? "right" : "left",
-              backgroundImage:
-                person.person.avatar && `url(${person.person.avatar})`,
             }}
           />
         )

@@ -18,7 +18,10 @@ const ChatList = ({ chats }) => {
   // }, []);
 
   useEffect(() => {
-    dispatch(changeSelectedChat(chatList[0]?.id));
+    if (!selectedChat) {
+      console.log("GOOOO");
+      dispatch(changeSelectedChat(chatList[0]?.id));
+    }
   }, [chatList]);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const ChatList = ({ chats }) => {
     return chatList.map((chat, index) => {
       return (
         <div key={`chat_${index}`} style={{ width: "100%" }}>
-          <ChatCard chat={chat} />
+          <ChatCard chat={chat} selected={selectedChat} />
         </div>
       );
     });

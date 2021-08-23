@@ -130,7 +130,7 @@
 }
 
 .message-image {
-  margin-right: 18px;
+  margin: 10px;
   object-fit: cover;
   border-radius: 6px;
   height: 30vw;
@@ -313,4 +313,28 @@
 /* hidden scrollbar */
 ::-webkit-scrollbar {
   width: 0;
+}
+
+/* scrollbar custom */
+/* width */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+.scrollbar-custom::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #c8abf6;
+  border-radius: 10px;
+}
+
+/* Handle */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #bda6ec;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #4e2976;
 }
