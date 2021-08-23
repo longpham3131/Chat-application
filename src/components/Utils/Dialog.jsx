@@ -1,5 +1,8 @@
 import { Modal, Button } from "antd";
-
+import { useState } from "react";
+import { useEffect } from "react";
+import DefaultImage from "../../assets/img/default-image.jpg";
+import Loader from "react-loader-spinner";
 const Dialog = ({
   type = "file",
   title = "",
@@ -9,6 +12,11 @@ const Dialog = ({
   btnSubmitName = "Confirm",
   onSubmit,
 }) => {
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    setisLoading(true);
+  }, [content]);
+
   const customFooter = () => {
     return (
       <div>
@@ -26,6 +34,7 @@ const Dialog = ({
       </div>
     );
   };
+
   return (
     <Modal
       visible={isShow}
@@ -48,7 +57,19 @@ const Dialog = ({
         
       ></div> */}
       {type === "file" ? (
-        <img src={content} alt="img" className="w-100" />
+        <div style={{ position: "relative" }}>
+          <div style={{ position: "absolute", top: "28%", right: "29%" }}>
+            <Loader type="Oval" color="#7554a0" height={200} width={200} />
+          </div>
+          <img
+            src={isLoading ? DefaultImage : content}
+            alt="img"
+            className="w-100"
+            onLoad={() => {
+              setisLoading(false);
+            }}
+          />
+        </div>
       ) : (
         content
       )}

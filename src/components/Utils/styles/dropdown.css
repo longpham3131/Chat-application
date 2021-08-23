@@ -2,20 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #dee2e6;
+  background-color: rgb(202, 188, 220);
   cursor: pointer;
   height: 50px;
   width: 100%;
   padding: 0 15px;
   transition: all 0.3s;
+  border-radius: 10px;
+  color: white;
 }
 
 .dropdown--custom h5 {
   transition: all 0.5s;
+  color: white;
 }
 /* hover  */
 .dropdown--custom:hover {
-  background-color: purple;
+  background-color: rgb(59, 42, 80);
   color: white;
 }
 .dropdown--custom:hover h5 {
@@ -30,7 +33,7 @@
 }
 /* active */
 .dropdown--custom.active {
-  background-color: purple;
+  background-color: rgb(59, 42, 80);
   color: white;
 }
 .dropdown--custom.active h5 {

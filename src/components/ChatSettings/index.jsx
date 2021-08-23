@@ -11,12 +11,11 @@ const ChatSettings = (props) => {
   const dispatch = useDispatch();
   const dataSetting = useSelector((state) => state.chatReducer.chatDetail);
   const selectedChat = useSelector((state) => state.chatReducer.selectedChat);
-  console.log("Chat setting", selectedChat, dataSetting);
   useEffect(() => {
     dispatch(getChatDetail(selectedChat));
   }, []);
   return (
-    <div style={{ padding: "10px" }}>
+    <div style={{ padding: "10px" }} className="background--image-custom">
       <ChatSettingTop title={dataSetting?.title} />
       <div style={{ overflowY: "scroll", maxHeight: "80vh" }}>
         <Dropdown

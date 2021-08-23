@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { changeSelectedChat } from "../../store/actions/chat.action";
 import "./styles/chatCard.css";
 const ChatCard = ({ chat, selected }) => {
-  console.log("CHAT", chat);
   const dispatch = useDispatch();
   const onChangeChat = () => {
     dispatch(changeSelectedChat(chat?.id));

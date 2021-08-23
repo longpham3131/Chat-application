@@ -37,9 +37,14 @@ const ChatSettingPhoto = ({ chat }) => {
           if (item.file.includes(".mp4")) {
             return (
               <div
-                className="col-4 p-0 "
                 key={`file_${index}`}
-                style={{ height: "100px" }}
+                style={{
+                  height: "100px",
+                  width: "30%",
+                  margin: "3px",
+                  flex: "0 0 auto",
+                  padding: "0",
+                }}
               >
                 <video style={{ width: "100%", height: "100px" }} controls>
                   <source src={item.file} type="video/mp4" />
@@ -50,7 +55,6 @@ const ChatSettingPhoto = ({ chat }) => {
 
           return (
             <div
-              className="col-4 p-0"
               key={`file_${index}`}
               style={{
                 backgroundImage: `url(${
@@ -60,6 +64,9 @@ const ChatSettingPhoto = ({ chat }) => {
                 backgroundPosition: "center",
                 height: "100px",
                 cursor: "pointer",
+                width: "30%",
+                margin: "3px",
+                flex: "0 0 auto",
               }}
               onClick={() => {
                 handleOpenImage(item.file);

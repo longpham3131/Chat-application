@@ -4,6 +4,7 @@ import ChatFeed from "./components/ChatFeed";
 import LoginForm from "./components/LoginForm";
 import ChatSettings from "./components/ChatSettings/";
 import ChatList from "./components/ChatList";
+import Typing from "./components/Typing";
 
 const App = () => {
   if (!localStorage.getItem("username")) return <LoginForm />;

@@ -23,7 +23,11 @@ const MyMessage = ({ message, handleShowImage }) => {
           src={isLoadingImg ? DefaultImage : attach.file}
           alt="message-attachment"
           className="message-image"
-          onClick={() => handleShowImage(attach.file)}
+          onClick={() => {
+            isLoadingImg
+              ? handleShowImage(DefaultImage)
+              : handleShowImage(attach.file);
+          }}
           onLoad={() => {
             setIsLoadingImg(false);
           }}

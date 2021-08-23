@@ -19,7 +19,6 @@ const ChatList = ({ chats }) => {
 
   useEffect(() => {
     if (!selectedChat) {
-      console.log("GOOOO");
       dispatch(changeSelectedChat(chatList[0]?.id));
     }
   }, [chatList]);

@@ -74,7 +74,10 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgb(240, 240, 240);
+  background-image: url("./assets/img/background-purple-2.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
 }
 
 .chat-title-container {
@@ -161,7 +164,7 @@
   bottom: 0px;
   width: 100%;
   padding: 18px;
-  background-color: rgb(240, 240, 240);
+  background-color: transparent;
   z-index: 4;
 }
 
@@ -337,4 +340,24 @@
 /* Handle on hover */
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background: #4e2976;
+}
+
+#root {
+  background-image: url("./assets/img/background-purple-2.jpg");
+  /* background: rgb(117, 84, 160);
+  background: linear-gradient(
+    90deg,
+    rgba(117, 84, 160, 1) 7%,
+    rgba(117, 84, 160, 1) 17%,
+    rgba(106, 95, 168, 1) 29%,
+    rgba(99, 103, 174, 1) 44%,
+    rgba(87, 116, 184, 1) 66%,
+    rgba(70, 135, 198, 1) 83%,
+    rgba(44, 163, 219, 1) 96%,
+    rgba(22, 188, 237, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  ); */
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
 }
