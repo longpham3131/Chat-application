@@ -1,9 +1,9 @@
 import Loader from "react-loader-spinner";
 const Loading = ({ content }) => {
   return (
-    <div style={{ textAlign: "center", lineHeight: "40vh" }}>
-      <Loader type="Bars" color="#7554a0" height={50} width={50} />
-      <h4 style={{ color: "#7554a0" }}>{content}</h4>
+    <div style={{ textAlign: "center" }}>
+      <Loader type="Bars" color="#7554a0" height={30} width={30} />
+      <p style={{ color: "#7554a0", fontWeight: "500" }}>{content}</p>
     </div>
   );
 };

@@ -6,7 +6,12 @@ import {
   PATCH_READ_MESSAGE,
   GET_CHAT_LIST,
   CHANGE_SELECTED_CHAT,
+  LOADING_MESSAGE,
 } from "../constants/chat.constant";
+
+const updateLoading = (status) => {
+  return { type: LOADING_MESSAGE, payload: status };
+};
 
 //Get chat detail
 
@@ -63,6 +68,7 @@ const getMessagesAction = (data) => {
 //Get latest message
 export const getLatestMess = (chatId, countMessage = 1) => {
   return async (dispatch) => {
+    dispatch(updateLoading(true));
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
     const authObject = {
@@ -75,9 +81,10 @@ export const getLatestMess = (chatId, countMessage = 1) => {
         `https://api.chatengine.io/chats/${chatId}/messages/latest/${countMessage}/`,
         { headers: authObject }
       );
-
+      dispatch(updateLoading(false));
       dispatch(getLatestMessAction(data.data));
     } catch (error) {
+      dispatch(updateLoading(false));
       console.log("ERR_MESSAGES", error);
     }
   };
