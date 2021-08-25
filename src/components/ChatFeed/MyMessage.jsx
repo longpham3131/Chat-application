@@ -4,34 +4,34 @@ const MyMessage = ({ message, handleShowImage }) => {
   const [isLoadingImg, setIsLoadingImg] = useState(true);
   // Kiểm tra tín nhắn có ảnh không
   if (message?.attachments?.length > 0) {
-    if (message?.attachments[0].file.includes(".mp4")) {
-      return (
-        <video
-          width="320"
-          height="240"
-          className="message-image"
-          style={{ float: "right " }}
-          controls
-        >
-          <source src={message.attachments[0].file} type="video/mp4" />
-        </video>
-      );
-    }
     return message.attachments.map((attach, index) => {
+      if (attach.file.includes(".mp4")) {
+        return (
+          <video
+            width="320"
+            height="240"
+            className="message-image"
+            style={{ float: "right " }}
+            controls
+          >
+            <source src={attach.file} type="video/mp4" />
+          </video>
+        );
+      }
       return (
         <img
           src={isLoadingImg ? DefaultImage : attach.file}
           alt="message-attachment"
           className="message-image"
-          onClick={() => {
-            isLoadingImg
-              ? handleShowImage(DefaultImage)
-              : handleShowImage(attach.file);
-          }}
+          onClick={() => handleShowImage(attach.file)}
           onLoad={() => {
             setIsLoadingImg(false);
           }}
-          style={{ float: "right ", cursor: "pointer" }}
+          style={{
+            float: "right ",
+            cursor: "pointer",
+            backgroundColor: "#c3c3c3",
+          }}
           key={index}
         />
       );

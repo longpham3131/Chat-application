@@ -67,6 +67,7 @@ const ChatSettingPhoto = ({ chat }) => {
                 width: "30%",
                 margin: "3px",
                 flex: "0 0 auto",
+                backgroundColor: "#c3c3c3",
               }}
               onClick={() => {
                 handleOpenImage(item.file);

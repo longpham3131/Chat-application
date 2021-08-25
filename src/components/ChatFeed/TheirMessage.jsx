@@ -10,26 +10,25 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
   const handleTypeOfMessage = () => {
     if (message?.attachments?.length > 0) {
       //Video
-      if (message?.attachments[0].file.includes(".mp4")) {
-        return (
-          <video
-            width="320"
-            height="240"
-            className="message-image"
-            style={{
-              float: "right ",
-              marginLeft: isFirtstMessageByUser ? "4px" : "48px",
-            }}
-            controls
-          >
-            <source src={message.attachments[0].file} type="video/mp4" />
-          </video>
-        );
-      }
-      //Image
       return (
         <div className="message-block">
-          {message.attachments.map((item) => {
+          {message.attachments.map((item, index) => {
+            if (item.file.includes(".mp4")) {
+              return (
+                <video
+                  width="320"
+                  height="240"
+                  className="message-image"
+                  style={{
+                    float: "left ",
+                    marginLeft: isFirtstMessageByUser ? "4px" : "48px",
+                  }}
+                  controls
+                >
+                  <source src={item.file} type="video/mp4" />
+                </video>
+              );
+            }
             return (
               <img
                 src={isLoadingImage ? DefaultImage : item.file}
@@ -40,6 +39,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
                   marginLeft: isFirtstMessageByUser ? "4px" : "48px",
                   float: "left",
                   cursor: "pointer",
+                  backgroundColor: "#c3c3c3",
                 }}
                 onLoad={() => {
                   setIsLoadingImage(false);
@@ -88,6 +88,9 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
         <img
           className="message-avatar"
           src={isLoadingAvatar ? DefaultAvatar : message?.sender?.avatar}
+          style={{
+            backgroundColor: "#c3c3c3",
+          }}
           alt="avatar-sender"
           onLoad={() => {
             setIsLoadingAvatar(false);

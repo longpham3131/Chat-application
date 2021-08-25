@@ -14,9 +14,10 @@ const Dialog = ({
 }) => {
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
-    setisLoading(true);
-  }, [content]);
-
+    if (isShow) {
+      setisLoading(true);
+    }
+  }, [isShow]);
   const customFooter = () => {
     return (
       <div>
@@ -35,6 +36,39 @@ const Dialog = ({
     );
   };
 
+  const onRenderContent = () => {
+    if (type === "file") {
+      return (
+        <div style={{ position: "relative" }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "45%",
+              right: "45%",
+              visibility: isLoading ? "visible" : "hidden",
+            }}
+          >
+            <Loader type="Oval" color="#7554a0" height={50} width={50} />
+          </div>
+          <img
+            src={content}
+            alt="img"
+            className="w-100"
+            style={{
+              backgroundColor: "#c3c3c3",
+              height: isLoading ? "300px" : "unset",
+            }}
+            onLoad={() => {
+              setisLoading(false);
+            }}
+          />
+        </div>
+      );
+    }
+
+    return content;
+  };
+
   return (
     <Modal
       visible={isShow}
@@ -46,33 +80,7 @@ const Dialog = ({
         handleHideModal();
       }}
     >
-      {/* <div
-        style={{
-          backgroundImage: `url(${content})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100%",
-          height: "400px",
-        }}
-        
-      ></div> */}
-      {type === "file" ? (
-        <div style={{ position: "relative" }}>
-          <div style={{ position: "absolute", top: "28%", right: "29%" }}>
-            <Loader type="Oval" color="#7554a0" height={200} width={200} />
-          </div>
-          <img
-            src={isLoading ? DefaultImage : content}
-            alt="img"
-            className="w-100"
-            onLoad={() => {
-              setisLoading(false);
-            }}
-          />
-        </div>
-      ) : (
-        content
-      )}
+      {onRenderContent()}
     </Modal>
   );
 };
