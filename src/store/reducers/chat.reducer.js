@@ -6,6 +6,7 @@ import {
   GET_CHAT_LIST,
   CHANGE_SELECTED_CHAT,
   LOADING_MESSAGE,
+  CREATE_CHAT,
 } from "../constants/chat.constant";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   otherUsers: [],
   selectedChat: null,
   loadingMessage: true,
+  notify: { type: null, message: "", status: "" },
 };
 
 export const chatReducer = (state = initialState, { type, payload }) => {
@@ -36,6 +38,9 @@ export const chatReducer = (state = initialState, { type, payload }) => {
       return { ...state, selectedChat: payload };
     case LOADING_MESSAGE: {
       return { ...state, loadingMessage: payload };
+    }
+    case CREATE_CHAT: {
+      return { ...state, notify: payload };
     }
     default:
       return state;

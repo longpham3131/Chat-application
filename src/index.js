@@ -18,6 +18,9 @@ import "../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loade
 import { Provider } from "react-redux";
 import store from "./store/index";
 
+//Notification
+import "react-notifications/lib/notifications.css";
+
 ReactDOM.render(
   <Provider store={store}>
     <div

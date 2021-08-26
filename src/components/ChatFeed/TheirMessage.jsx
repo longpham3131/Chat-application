@@ -54,7 +54,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
       if (message.text.includes("https")) {
         return (
           <div
-            className="message"
+            className="message-chat"
             style={{
               float: "left",
               backgroundColor: "#CABCDC",

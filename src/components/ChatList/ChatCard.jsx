@@ -46,17 +46,22 @@ const ChatCard = ({ chat, selected }) => {
             : moment(chat?.created).fromNow()}
         </span>
       </div>
-
-      <div className="d-flex  align-items-center">
-        <span style={{ fontWeight: "500", marginRight: "5px" }}>
-          {chat?.last_message?.sender?.username}:
+      {chat?.last_message?.sender?.username ? (
+        <div className="d-flex  align-items-center">
+          <span style={{ fontWeight: "500", marginRight: "5px" }}>
+            {chat?.last_message?.sender?.username}:
+          </span>
+          <span>
+            {chat?.last_message?.attachments.length > 0
+              ? `sent ${chat?.last_message?.attachments.length} attachment`
+              : handleText()}
+          </span>
+        </div>
+      ) : (
+        <span style={{ fontWeight: "500" }}>
+          Let's say hi to other members{" "}
         </span>
-        <span>
-          {chat?.last_message?.attachments.length > 0
-            ? `sent ${chat?.last_message?.attachments.length} attachment`
-            : handleText()}
-        </span>
-      </div>
+      )}
     </div>
   );
 };

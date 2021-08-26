@@ -8,7 +8,7 @@ const Dialog = ({
   title = "",
   content = "",
   isShow,
-  handleHideModal,
+  handleHideDialog,
   btnSubmitName = "Confirm",
   onSubmit,
 }) => {
@@ -24,7 +24,7 @@ const Dialog = ({
         <Button
           danger
           onClick={() => {
-            handleHideModal();
+            handleHideDialog();
           }}
         >
           Close
@@ -77,7 +77,7 @@ const Dialog = ({
       centered={true}
       footer={type === "file" ? null : customFooter()}
       onCancel={() => {
-        handleHideModal();
+        handleHideDialog();
       }}
     >
       {onRenderContent()}

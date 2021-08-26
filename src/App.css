@@ -124,7 +124,7 @@
   background-size: 48px;
 }
 
-.message {
+.message-chat {
   padding: 12px;
   font-size: 16px;
   border-radius: 6px;
@@ -262,7 +262,7 @@
   width: 400px;
 }
 
-.title {
+.title-custom {
   text-align: center;
   color: white;
   margin-bottom: 30px;
@@ -360,4 +360,14 @@
   background-position: center;
   background-size: cover;
   height: 100vh;
+}
+
+/* Custom antd */
+.ant-checkbox-wrapper {
+  align-items: center !important;
+}
+
+/* Custom notify  */
+.notification .title {
+  color: white;
 }

@@ -101,7 +101,7 @@ const ChatSettingPeople = ({ chat }) => {
         isShow={isShowDialog}
         content={contentRemove}
         title={"Remove Member"}
-        handleHideModal={() => {
+        handleHideDialog={() => {
           setIsShowDialog(false);
         }}
         onSubmit={handleRemoveMember}

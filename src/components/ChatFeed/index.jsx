@@ -31,6 +31,9 @@ const ChatFeed = (props) => {
     if (chat?.last_message?.id !== messages[messages.length - 1]?.id) {
       dispatch(getLatestMess(selectedChat, numberMessage));
     }
+    if (isScrollTop) {
+      setIsScrollTop(false);
+    }
   }, [chat?.last_message]);
 
   useEffect(() => {
@@ -144,7 +147,7 @@ const ChatFeed = (props) => {
       <Dialog
         isShow={isShowModal}
         content={file}
-        handleHideModal={() => {
+        handleHideDialog={() => {
           setIsShowModal(false);
         }}
       />

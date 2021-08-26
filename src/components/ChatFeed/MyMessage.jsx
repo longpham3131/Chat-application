@@ -39,7 +39,7 @@ const MyMessage = ({ message, handleShowImage }) => {
   }
   return (
     <div
-      className="message"
+      className="message-chat"
       style={{
         float: "right",
         marginRight: "18px",

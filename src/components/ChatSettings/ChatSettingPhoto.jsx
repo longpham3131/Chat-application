@@ -19,7 +19,7 @@ const ChatSettingPhoto = ({ chat }) => {
       <Dialog
         content={file}
         isShow={isShowModal}
-        handleHideModal={() => {
+        handleHideDialog={() => {
           setIsShowModal(false);
         }}
       />

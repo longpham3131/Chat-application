@@ -1,5 +1,9 @@
 import axios from "axios";
-import { GET_CHAT_USER, GET_OTHER_USERS } from "../constants/user.constant";
+import {
+  GET_ALL_USER,
+  GET_CHAT_USER,
+  GET_OTHER_USERS,
+} from "../constants/user.constant";
 import { getChatDetail } from "./chat.action";
 
 // Get chat user
@@ -27,6 +31,28 @@ export const getChatUser = (username, password) => {
 
 const getChatUserAction = (status) => {
   return { type: GET_CHAT_USER, payload: status };
+};
+
+//GET ALL USER
+export const getAllUser = () => {
+  return async (dispatch) => {
+    const authObject = {
+      "PRIVATE-KEY": "32ad916a-34a5-4937-9328-8c0ddaea471e",
+    };
+    try {
+      const result = await axios.get("https://api.chatengine.io/users", {
+        headers: authObject,
+      });
+
+      dispatch(getAllUSer(result.data));
+    } catch (error) {
+      console.log("ERR_GET_ALL_USER", error);
+    }
+  };
+};
+
+const getAllUSer = (data) => {
+  return { type: GET_ALL_USER, payload: data };
 };
 
 //GET OTHER USER

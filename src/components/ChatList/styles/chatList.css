@@ -7,9 +7,27 @@
 .chatList__header {
   padding: 10px;
   width: 100%;
-  background-color: #dee2e6;
-  text-align: center;
+  background-color: transparent;
+  /* text-align: center; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chatList__header h3 {
+  color: white;
+  margin: 0;
+}
+.chatList__header--button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  background-color: rgb(202, 188, 220);
+
+  border: 1px solid rgb(59, 42, 80);
 }
 .chatList__body {
   padding: 10px;
+  overflow-y: scroll;
+  max-height: 90vh;
 }

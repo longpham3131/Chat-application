@@ -7,6 +7,7 @@ import {
   GET_CHAT_LIST,
   CHANGE_SELECTED_CHAT,
   LOADING_MESSAGE,
+  CREATE_CHAT,
 } from "../constants/chat.constant";
 
 const updateLoading = (status) => {
@@ -159,4 +160,51 @@ export const changeSelectedChat = (chatId) => {
 
 const changeSelectedChatAction = (chatId) => {
   return { type: CHANGE_SELECTED_CHAT, payload: chatId };
+};
+
+//CREATE CHAT
+export const createChat = (usernames, title) => {
+  return async (dispatch) => {
+    const username = localStorage.getItem("username");
+    const password = localStorage.getItem("password");
+    const authObject = {
+      "Project-ID": "e078c6b8-8d92-4d9b-a130-9f7c1b64406f",
+      "User-Name": username,
+      "User-Secret": password,
+    };
+    try {
+      const result = await axios.put(
+        `https://api.chatengine.io/chats/`,
+        {
+          usernames,
+          title,
+          is_direct_chat: false,
+        },
+        {
+          headers: authObject,
+        }
+      );
+      await dispatch(
+        createChatAction({
+          type: "CREATE_CHAT",
+          message: "Create new chat success",
+          status: "success",
+        })
+      );
+      await dispatch(getChatList());
+      await dispatch(changeSelectedChat(result.data.id));
+    } catch (error) {
+      console.log("ERR_CREATE_CHAT", error);
+      dispatch(
+        createChatAction({
+          type: "CREATE_CHAT",
+          message: "Create new chat fail",
+          status: "fail",
+        })
+      );
+    }
+  };
+};
+const createChatAction = (notify) => {
+  return { type: CREATE_CHAT, payload: notify };
 };
