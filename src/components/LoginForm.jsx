@@ -25,7 +25,7 @@ const LoginForm = () => {
   return (
     <div className="wrapper">
       {/* <h1 className="title-custom">Chat Application</h1> */}
-      <div style={{ width: "500px" }}>
+      <div className="wrapper__loginForm">
         <Tabs defaultActiveKey="1" onChange={callback} size={"large"}>
           <TabPane tab="Login" key="1">
             <Form
