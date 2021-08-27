@@ -70,7 +70,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
       //text
       return (
         <div
-          className="message"
+          className="message-chat"
           style={{
             float: "left",
             backgroundColor: "#CABCDC",
