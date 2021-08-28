@@ -308,9 +308,10 @@
 }
 
 .error {
-  color: white;
+  color: #e88888;
   text-align: center;
   margin-top: 20px;
+  font-weight: 500;
 }
 
 /* hidden scrollbar */

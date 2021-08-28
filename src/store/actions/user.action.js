@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  CREATE_USER,
   GET_ALL_USER,
   GET_CHAT_USER,
   GET_OTHER_USERS,
@@ -33,6 +34,31 @@ const getChatUserAction = (status) => {
   return { type: GET_CHAT_USER, payload: status };
 };
 
+//Create user
+export const createUser = (data) => {
+  return async (dispatch) => {
+    const authObject = {
+      "PRIVATE-KEY": "32ad916a-34a5-4937-9328-8c0ddaea471e",
+    };
+    try {
+      const result = await axios.post(
+        "https://api.chatengine.io/users/",
+        data,
+        {
+          headers: authObject,
+        }
+      );
+      console.log("result", result);
+      dispatch(createUserAction(result));
+    } catch (error) {
+      console.log("ERR", error.response);
+      dispatch(createUserAction(error.response));
+    }
+  };
+};
+const createUserAction = (data) => {
+  return { type: CREATE_USER, payload: data };
+};
 //GET ALL USER
 export const getAllUser = () => {
   return async (dispatch) => {
