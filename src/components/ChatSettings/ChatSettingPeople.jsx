@@ -8,6 +8,7 @@ import {
 import SelectComp from "../Utils/Select";
 import "./styles/chatSettingPeople.css";
 import Dialog from "../Utils/Dialog";
+import DefaultAvatar from "../../assets/img/default-avatar.jpg";
 
 const ChatSettingPeople = ({ chat }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const ChatSettingPeople = ({ chat }) => {
   const [isShowDialog, setIsShowDialog] = useState(false);
   const [contentRemove, setContentRemove] = useState(null);
   const [selectedUserRemove, setSelectedUserRemove] = useState("");
+
+  const [isLoadingAvatar, setIsLoadingAvatar] = useState(true);
 
   const otherUsersStore = useSelector((state) => state.chatReducer.otherUsers);
 

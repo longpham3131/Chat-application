@@ -6,6 +6,7 @@ import ChatSettingOption from "./ChatSettingOption";
 import ChatSettingPeople from "./ChatSettingPeople";
 import ChatSettingPhoto from "./ChatSettingPhoto";
 import ChatSettingTop from "./ChatSettingTop";
+import backGround from "../../assets/img/background-purple-2.jpg";
 
 const ChatSettings = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,16 @@ const ChatSettings = (props) => {
     dispatch(getChatDetail(selectedChat));
   }, []);
   return (
-    <div style={{ padding: "10px" }} className="background--image-custom">
+    <div
+      style={{
+        padding: "10px",
+        backgroundImage: `url(${backGround})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        height: "100vh",
+      }}
+      className="background--image-custom"
+    >
       <ChatSettingTop title={dataSetting?.title} />
       <div style={{ overflowY: "scroll", maxHeight: "80vh" }}>
         <Dropdown

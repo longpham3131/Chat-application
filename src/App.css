@@ -78,6 +78,8 @@
   background-position: center;
   background-size: cover;
   height: 100vh;
+  border-left: 3px solid #3b2a50;
+  border-right: 3px solid #3b2a50;
 }
 
 .chat-title-container {

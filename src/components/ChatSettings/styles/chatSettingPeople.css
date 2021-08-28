@@ -11,10 +11,14 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(202, 188, 220);
 }
 .chatMember__name {
   flex-grow: 2;
   margin-left: 10px;
+  font-weight: 500;
+  color: white;
 }
 .chatMember__status {
   position: absolute;
@@ -24,6 +28,7 @@
   height: 10px;
   border-radius: 50%;
   background-color: gray;
+  border: 2px solid gray;
 }
 .chatMember__status.online {
   background-color: #0cd30c;
@@ -33,7 +38,7 @@
   margin: 10px 0;
   border-radius: 10px;
   border: 1px solid rgb(59, 42, 80);
-  color: rgb(59, 42, 80);
+  background: transparent;
   transition: all 0.5s;
 }
 .button--add-member:hover {

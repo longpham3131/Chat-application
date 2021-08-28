@@ -27,7 +27,7 @@ const ChatSettingPhoto = ({ chat }) => {
         className="row m-0"
         style={{
           overflowY: "scroll",
-          height: "200px",
+          height: "fit-content",
           maxHeight: "200px",
           paddingBottom: "10px",
           paddingTop: "10px",

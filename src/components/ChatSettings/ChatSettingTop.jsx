@@ -3,7 +3,7 @@ import imgDefault from "../../../src/assets/img/logo192.png";
 const ChatSettingTop = ({ title }) => {
   return (
     <div className="container text-center mt-3">
-      <img
+      {/* <img
         src={imgDefault}
         alt="img-chat-room"
         style={{
@@ -12,8 +12,10 @@ const ChatSettingTop = ({ title }) => {
           width: "50px",
           marginBottom: "10px",
         }}
-      />
-      <div className="chat-title">{title}</div>
+      /> */}
+      <div className="chat-title" style={{ color: "white" }}>
+        {title}
+      </div>
     </div>
   );
 };
