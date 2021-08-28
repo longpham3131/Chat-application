@@ -156,7 +156,7 @@ const ChatList = ({ chats }) => {
   return (
     <div className="chatList">
       <div className="chatList__header">
-        <h3>My chatList</h3>
+        <h3>My Chat List</h3>
         <button
           className="chatList__header--button"
           title="Add group"

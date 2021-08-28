@@ -28,7 +28,7 @@ const LoginForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("login");
   const [messageErr, setMessageErr] = useState("");
 
   const uploadButton = (
@@ -52,7 +52,8 @@ const LoginForm = () => {
   }, [createUserStore]);
 
   const handleSubmit = (e) => {
-    if (!avatarRgt) {
+    console.log("SLECTED", selectedTab);
+    if (!avatarRgt && selectedTab === "register") {
       setMessageErr("Please choose your avatar !");
       return;
     }
@@ -61,7 +62,7 @@ const LoginForm = () => {
       dispatch(getChatUser(username, password));
     }
     // Register
-    else {
+    else if (selectedTab === "register") {
       let formData = new FormData();
       formData.append("username", usernameRgt);
       formData.append("first_name", fnameRgt);

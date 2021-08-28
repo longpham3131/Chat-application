@@ -54,7 +54,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
       if (message.text.includes("https")) {
         return (
           <div
-            className="message-chat"
+            className="message-chat their-message"
             style={{
               float: "left",
               backgroundColor: "#CABCDC",
@@ -70,7 +70,7 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
       //text
       return (
         <div
-          className="message-chat"
+          className="message-chat their-message"
           style={{
             float: "left",
             backgroundColor: "#CABCDC",
@@ -97,8 +97,19 @@ const TheirMessage = ({ lastMessage, message, handleShowImage }) => {
           }}
         />
       )}
-
-      {handleTypeOfMessage()}
+      <div style={{ maxWidth: "60%" }}>
+        <p
+          style={{
+            marginBottom: "0",
+            paddingLeft: "5px",
+            color: "white",
+            fontWeight: "500",
+          }}
+        >
+          {message?.sender?.username}
+        </p>
+        {handleTypeOfMessage()}
+      </div>
     </div>
   );
 };
