@@ -64,8 +64,8 @@ const LoginForm = () => {
     else {
       let formData = new FormData();
       formData.append("username", usernameRgt);
-      formData.append("first_name", usernameRgt);
-      formData.append("last_name", usernameRgt);
+      formData.append("first_name", fnameRgt);
+      formData.append("last_name", lnameRgt);
       formData.append("secret", passwordRgt);
       formData.append("avatar", avatarRgt);
       dispatch(createUser(formData));
@@ -115,8 +115,8 @@ const LoginForm = () => {
 
   return (
     <div className="wrapper">
-      {/* <h1 className="title-custom">Chat Application</h1> */}
       <div className="wrapper__loginForm">
+        <h1 className="title-custom">Let's Chat</h1>
         <NotificationContainer />
         <Tabs defaultActiveKey="login" onChange={callback} size={"large"}>
           <TabPane tab="Login" key="login">
