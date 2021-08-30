@@ -96,7 +96,6 @@ export const getOtherUsers = (chatId) => {
         `https://api.chatengine.io/chats/${chatId}/others/`,
         { headers: authObject }
       );
-      console.log("DATA USER", data);
       dispatch(getOtherUsersAction(data.data));
     } catch (error) {
       console.log("ERR_OTHER_USERS", error);

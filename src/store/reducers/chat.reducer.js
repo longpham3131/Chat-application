@@ -8,6 +8,7 @@ import {
   LOADING_MESSAGE,
   CREATE_CHAT,
 } from "../constants/chat.constant";
+import { GET_OTHER_USERS } from "../constants/user.constant";
 
 const initialState = {
   chatUser: "",
@@ -38,6 +39,9 @@ export const chatReducer = (state = initialState, { type, payload }) => {
       return { ...state, selectedChat: payload };
     case LOADING_MESSAGE: {
       return { ...state, loadingMessage: payload };
+    }
+    case GET_OTHER_USERS: {
+      return { ...state, otherUsers: payload };
     }
     case CREATE_CHAT: {
       return { ...state, notify: payload };
