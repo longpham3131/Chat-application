@@ -114,11 +114,6 @@ const ChatFeed = (props) => {
     const messHeightest = document.getElementById("messHeightest");
 
     if (messHeightest?.getBoundingClientRect().top === 106) {
-      // console.log(
-      //   "CALL API MESS",
-      //   messHeightest.getBoundingClientRect().top,
-      //   numberMessage
-      // );
       setIsScrollTop(true);
       dispatch(getLatestMess(selectedChat, numberMessage));
       setNumberMessage(numberMessage + 10);

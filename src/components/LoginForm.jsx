@@ -52,7 +52,6 @@ const LoginForm = () => {
   }, [createUserStore]);
 
   const handleSubmit = (e) => {
-    console.log("SLECTED", selectedTab);
     if (!avatarRgt && selectedTab === "register") {
       setMessageErr("Please choose your avatar !");
       return;
@@ -93,8 +92,6 @@ const LoginForm = () => {
   };
 
   const handleChange = (info) => {
-    console.log("INFO", info);
-
     setAvatarRgt(info.file.originFileObj);
     // setAvatarRgt(null);
     // if (info.file.status === "uploading") {

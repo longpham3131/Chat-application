@@ -88,7 +88,6 @@ const ChatList = ({ chats }) => {
     setSelectedChatUsers(newList);
   };
   const handleAddGroupChat = () => {
-    console.log("ONSUBMIT", newChatTitle, selectedChatUsers);
     dispatch(createChat(selectedChatUsers, newChatTitle));
     setNewChatTitle("");
     setSelectedChatUsers([]);
